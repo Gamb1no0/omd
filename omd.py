@@ -1,7 +1,13 @@
 import csv
+from typing import Callable
 
 
-def get_hierarchy():
+def get_hierarchy() -> None:
+    """Функция принтит иерархию департаментов в понятном виде.
+
+    Функция считывает csv-файл данный в примере, и затем 
+    выводит департамент и команды, в него входящие.
+    """
     hierarchy = {}
     with open("./Corp_Summary.csv", encoding='utf-8', newline='') as file:
         csvreader = csv.reader(file)
@@ -18,7 +24,12 @@ def get_hierarchy():
             print(f'\t{team}')
 
 
-def decorator_printing(get_report):
+def decorator_printing(get_report: Callable) -> Callable:
+    """Декоратор позволяет вывести сводный отсчет в терминале.
+
+    Декоратор выводит в консоли данные полученные
+    в формате словаря из функции get_report.
+    """
     def wrapper():
         report = get_report()
         for department in report.keys():
@@ -31,7 +42,12 @@ def decorator_printing(get_report):
     return wrapper
 
 
-def decorator_saving_csv(get_report):
+def decorator_saving_csv(get_report: Callable) -> Callable:
+    """Декоратор позволяет сохранить сводный отсчет в формате csv.
+
+    Декоратор сохраняет в формате csv данные полученные
+    в формате словаря из функции get_report.
+    """
     def wrapper():
         report = get_report()
         fields = ['Название', 'Численность', 'Вилка зп', 'Средняя зп']
@@ -44,7 +60,12 @@ def decorator_saving_csv(get_report):
     return wrapper
 
 
-def get_report():
+def get_report() -> dict[str, list[int, list[int]]]:
+    """Возвращает данные для сводного отсчета в формате словаря.
+
+    Функция считывает csv файл и берет из него все данные, которые могут пригодится
+    в сводном отсчете.
+    """
     report = {}
     with open("./Corp_Summary.csv", encoding='utf-8', newline='') as file:
         csvreader = csv.reader(file)
@@ -60,7 +81,12 @@ def get_report():
     return report
 
 
-def menu():
+def menu() -> None:
+    """Выводит в консоли меню для взаимодействия с пользователем.
+
+    Дает пользователю на выбор 3 опции, в зависимости от выбранной опции
+    вызвает одну из функции. В случае некорректного ввода, вызывает себя рекурсивно.
+    """
     print(
         'Выберите функцию:\n'
         '1)Иерархия команд в компании.\n'
