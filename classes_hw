@@ -12,7 +12,12 @@ class CountVectorizer:
 
         set_words = set()
         feature_names = []
+
+        if not isinstance(corpus, list):
+            raise TypeError('List corpus expected.')
         for text in corpus:
+            if not isinstance(text, str):
+                raise TypeError(f'String object expected but get {type(text)}')
             for word in map(lambda x: x.lower(), text.split()):
                 if word not in set_words:
                     set_words.add(word)
