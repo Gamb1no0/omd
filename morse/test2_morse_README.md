@@ -1,0 +1,1 @@
+Запустить тест командой: python -m pytest morse/morse_test2.py

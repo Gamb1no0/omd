@@ -1,0 +1,1 @@
+Чтобы запустить тест: python -m doctest -v -o NORMALIZE_WHITESPACE morse/morse_test.py
