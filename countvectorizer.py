@@ -4,6 +4,9 @@ from typing import List
 class CountVectorizer:
     '''Ковертирует коллекцию текстов в терм-документную матрицу'''
 
+    def __init__(self) -> None:
+        self.__feature_names = None
+
     def make_feature_names(self, corpus: List[str]) -> List[str]:
         '''Создает вектор для атрибута __feature_names.
 
