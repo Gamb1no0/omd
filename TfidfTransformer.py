@@ -19,18 +19,18 @@ class TfidfTransformer:
         for i in range(len(matrix[0])):
             cnt_docs = 0
             for vec in matrix:
-                if vec[i] != 0:
+                if vec[i] > 0:
                     cnt_docs += 1
 
             denominator = cnt_docs + 1
-            result.append(log(numerator/denominator) + 1)
+            result.append(log(numerator / denominator) + 1)
 
         return result
 
     def fit_transform(self, corpus_matrix: list[list[int]]) -> list[list[float]]:
         '''Вычисляет TF-IDF матрицу'''
 
-        tf = self.idf_transform(corpus_matrix)
+        tf = self.tf_transform(corpus_matrix)
         idf = self.idf_transform(corpus_matrix)
 
         return [[round(tf_vector[i] * idf[i], 3) for i in range(len(tf_vector))]
