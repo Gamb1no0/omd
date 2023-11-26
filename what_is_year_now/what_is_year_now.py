@@ -2,7 +2,7 @@ import urllib.request
 import json
 
 
-API_URL = 'http://worldclockapi.com/api/json/utc/now'
+API_URL = ' '
 
 YMD_SEP = '-'
 YMD_SEP_INDEX = 4
